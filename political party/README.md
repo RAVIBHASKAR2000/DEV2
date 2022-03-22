@@ -1,6 +1,3 @@
-# Akhil Bharatiye Kshatriye Mahasabha
-
-
 
 ## Running the Project.
 
