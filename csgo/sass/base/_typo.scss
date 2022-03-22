@@ -1,0 +1,56 @@
+.h1pri{
+    color:$white;
+    text-transform: uppercase;     
+    margin-bottom: 6rem;
+
+    &-main{
+        display: block;        
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.2rem;
+        animation-name: moveinleft;
+        animation-duration: 4s;
+    }
+
+    &-sub{
+        display: block;       
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 1.2rem;
+        animation-name: moveinright;
+        animation-duration: 4s;
+        animation-timing-function: ease-out;
+    }
+}
+
+.head-sec{
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right , hsla(0, 11%, 60%, 0.952),hsla(158, 13%, 13%, 0.795) );
+    background-clip:text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+    transition: .2s;
+
+    &:hover{
+       /* transform: skewY(2deg) skewX(15deg) scale(1.1);*/
+        text-shadow: .5rem 1rem 2rem rgba(0, 0, 0, 0.856);
+    }
+}
+
+.head-tert{
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph1{
+    font-size: 1.6rem;
+
+    &:not(:last-child){
+        margin-bottom: 3rem;
+    }
+}

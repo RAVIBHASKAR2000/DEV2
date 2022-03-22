@@ -1,0 +1,14 @@
+{
+  "name": "csgo",
+  "version": "1.0.0",
+  "description": "csgo guide",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css"
+  },
+  "author": "kushagra",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.13.0"
+  }
+}

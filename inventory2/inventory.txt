@@ -1,0 +1,7 @@
+
+User created:
+  email: admin@inventory.in
+  password: 60a2223e4764
+
+
+mongo posts --eval "db.dropDatabase();"

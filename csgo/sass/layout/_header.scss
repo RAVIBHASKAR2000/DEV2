@@ -1,0 +1,26 @@
+.header {
+    height: 95vh;
+    background-image: linear-gradient( to right bottom,
+     hsla(0, 11%, 60%, 0.788),
+     hsla(158, 13%, 13%, 0.795)) ,url(../img/csgo/e1dd1a6063a73c920d8a442cceed97e8.jpg);
+    background-size: cover;     
+    background-position: top;      
+    position: relative;    
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0,100% 0,100% 75vh,0 100%);
+    &-logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    &-logo{
+        height: 3.5rem;
+    }
+    &-text-box{
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%,-50%);      
+        text-align: center; 
+    }
+}

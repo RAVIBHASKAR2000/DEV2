@@ -1,0 +1,2707 @@
+type User {
+  id: ID!
+  name: String
+  email: String
+  password: PasswordState
+  language: String
+  country: String
+  timezone: String
+  meetings(
+    where: MeetingWhereInput! = {}
+    search: String
+    sortBy: [SortMeetingsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [MeetingOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Meeting!]
+  _meetingsMeta(
+    where: MeetingWhereInput! = {}
+    search: String
+    sortBy: [SortMeetingsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [MeetingOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use meetingsCount instead."
+    )
+  meetingsCount(where: MeetingWhereInput! = {}): Int
+}
+
+type PasswordState {
+  isSet: Boolean!
+}
+
+type _QueryMeta {
+  count: Int
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  email: String
+  email_not: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  email_i: String
+  email_not_i: String
+  email_contains_i: String
+  email_not_contains_i: String
+  email_starts_with_i: String
+  email_not_starts_with_i: String
+  email_ends_with_i: String
+  email_not_ends_with_i: String
+  email_in: [String]
+  email_not_in: [String]
+  password_is_set: Boolean
+  language: String
+  language_not: String
+  language_contains: String
+  language_not_contains: String
+  language_starts_with: String
+  language_not_starts_with: String
+  language_ends_with: String
+  language_not_ends_with: String
+  language_i: String
+  language_not_i: String
+  language_contains_i: String
+  language_not_contains_i: String
+  language_starts_with_i: String
+  language_not_starts_with_i: String
+  language_ends_with_i: String
+  language_not_ends_with_i: String
+  language_in: [String]
+  language_not_in: [String]
+  country: String
+  country_not: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  country_i: String
+  country_not_i: String
+  country_contains_i: String
+  country_not_contains_i: String
+  country_starts_with_i: String
+  country_not_starts_with_i: String
+  country_ends_with_i: String
+  country_not_ends_with_i: String
+  country_in: [String]
+  country_not_in: [String]
+  timezone: String
+  timezone_not: String
+  timezone_contains: String
+  timezone_not_contains: String
+  timezone_starts_with: String
+  timezone_not_starts_with: String
+  timezone_ends_with: String
+  timezone_not_ends_with: String
+  timezone_i: String
+  timezone_not_i: String
+  timezone_contains_i: String
+  timezone_not_contains_i: String
+  timezone_starts_with_i: String
+  timezone_not_starts_with_i: String
+  timezone_ends_with_i: String
+  timezone_not_ends_with_i: String
+  timezone_in: [String]
+  timezone_not_in: [String]
+  meetings_every: MeetingWhereInput
+  meetings_some: MeetingWhereInput
+  meetings_none: MeetingWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+enum SortUsersBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  language_ASC
+  language_DESC
+  country_ASC
+  country_DESC
+  timezone_ASC
+  timezone_DESC
+}
+
+input UserOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  email: OrderDirection
+  language: OrderDirection
+  country: OrderDirection
+  timezone: OrderDirection
+}
+
+enum OrderDirection {
+  asc
+  desc
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  language: String
+  country: String
+  timezone: String
+  meetings: MeetingRelateToManyInput
+}
+
+input MeetingRelateToManyInput {
+  create: [MeetingCreateInput]
+  connect: [MeetingWhereUniqueInput]
+  disconnect: [MeetingWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input UsersUpdateInput {
+  id: ID!
+  data: UserUpdateInput
+}
+
+input UserCreateInput {
+  name: String
+  email: String
+  password: String
+  language: String
+  country: String
+  timezone: String
+  meetings: MeetingRelateToManyInput
+}
+
+input UsersCreateInput {
+  data: UserCreateInput
+}
+
+type Meeting {
+  id: ID!
+  meetingtype: Int
+  date: String
+  guestName: String
+  guestEmail: String
+  meetingDesc: String
+  user: User
+}
+
+input MeetingWhereInput {
+  AND: [MeetingWhereInput!]
+  OR: [MeetingWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  meetingtype: Int
+  meetingtype_not: Int
+  meetingtype_in: [Int]
+  meetingtype_not_in: [Int]
+  date: String
+  date_not: String
+  date_lt: String
+  date_lte: String
+  date_gt: String
+  date_gte: String
+  date_in: [String]
+  date_not_in: [String]
+  guestName: String
+  guestName_not: String
+  guestName_contains: String
+  guestName_not_contains: String
+  guestName_starts_with: String
+  guestName_not_starts_with: String
+  guestName_ends_with: String
+  guestName_not_ends_with: String
+  guestName_i: String
+  guestName_not_i: String
+  guestName_contains_i: String
+  guestName_not_contains_i: String
+  guestName_starts_with_i: String
+  guestName_not_starts_with_i: String
+  guestName_ends_with_i: String
+  guestName_not_ends_with_i: String
+  guestName_in: [String]
+  guestName_not_in: [String]
+  guestEmail: String
+  guestEmail_not: String
+  guestEmail_contains: String
+  guestEmail_not_contains: String
+  guestEmail_starts_with: String
+  guestEmail_not_starts_with: String
+  guestEmail_ends_with: String
+  guestEmail_not_ends_with: String
+  guestEmail_i: String
+  guestEmail_not_i: String
+  guestEmail_contains_i: String
+  guestEmail_not_contains_i: String
+  guestEmail_starts_with_i: String
+  guestEmail_not_starts_with_i: String
+  guestEmail_ends_with_i: String
+  guestEmail_not_ends_with_i: String
+  guestEmail_in: [String]
+  guestEmail_not_in: [String]
+  meetingDesc: String
+  meetingDesc_not: String
+  meetingDesc_contains: String
+  meetingDesc_not_contains: String
+  meetingDesc_starts_with: String
+  meetingDesc_not_starts_with: String
+  meetingDesc_ends_with: String
+  meetingDesc_not_ends_with: String
+  meetingDesc_i: String
+  meetingDesc_not_i: String
+  meetingDesc_contains_i: String
+  meetingDesc_not_contains_i: String
+  meetingDesc_starts_with_i: String
+  meetingDesc_not_starts_with_i: String
+  meetingDesc_ends_with_i: String
+  meetingDesc_not_ends_with_i: String
+  meetingDesc_in: [String]
+  meetingDesc_not_in: [String]
+  user: UserWhereInput
+  user_is_null: Boolean
+}
+
+input MeetingWhereUniqueInput {
+  id: ID
+}
+
+enum SortMeetingsBy {
+  id_ASC
+  id_DESC
+  meetingtype_ASC
+  meetingtype_DESC
+  date_ASC
+  date_DESC
+  guestName_ASC
+  guestName_DESC
+  guestEmail_ASC
+  guestEmail_DESC
+  meetingDesc_ASC
+  meetingDesc_DESC
+}
+
+input MeetingOrderByInput {
+  id: OrderDirection
+  meetingtype: OrderDirection
+  date: OrderDirection
+  guestName: OrderDirection
+  guestEmail: OrderDirection
+  meetingDesc: OrderDirection
+}
+
+input MeetingUpdateInput {
+  meetingtype: Int
+  date: String
+  guestName: String
+  guestEmail: String
+  meetingDesc: String
+  user: UserRelateToOneInput
+}
+
+input UserRelateToOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: UserWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input MeetingsUpdateInput {
+  id: ID!
+  data: MeetingUpdateInput
+}
+
+input MeetingCreateInput {
+  meetingtype: Int
+  date: String
+  guestName: String
+  guestEmail: String
+  meetingDesc: String
+  user: UserRelateToOneInput
+}
+
+input MeetingsCreateInput {
+  data: MeetingCreateInput
+}
+
+type EventType {
+  id: ID!
+  title: String
+  slug: String
+  description: String
+  locations: JSON
+  length: Int
+  hidden: Boolean
+  user: User
+  bookings: Booking
+  availability: Availability
+  eventName: String
+  customInputs: EventTypeCustomInput
+  timeZone: String
+  periodType: String
+  periodStartDate: String
+  periodEndDate: String
+  periodDays: Int
+  periodCountCalendarDays: Boolean
+  requiresConfirmation: Boolean
+  minimumBookingNotice: Int
+}
+
+input EventTypeWhereInput {
+  AND: [EventTypeWhereInput!]
+  OR: [EventTypeWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  length: Int
+  length_not: Int
+  length_lt: Int
+  length_lte: Int
+  length_gt: Int
+  length_gte: Int
+  length_in: [Int]
+  length_not_in: [Int]
+  hidden: Boolean
+  hidden_not: Boolean
+  user: UserWhereInput
+  user_is_null: Boolean
+  bookings: BookingWhereInput
+  bookings_is_null: Boolean
+  availability: AvailabilityWhereInput
+  availability_is_null: Boolean
+  eventName: String
+  eventName_not: String
+  eventName_contains: String
+  eventName_not_contains: String
+  eventName_starts_with: String
+  eventName_not_starts_with: String
+  eventName_ends_with: String
+  eventName_not_ends_with: String
+  eventName_i: String
+  eventName_not_i: String
+  eventName_contains_i: String
+  eventName_not_contains_i: String
+  eventName_starts_with_i: String
+  eventName_not_starts_with_i: String
+  eventName_ends_with_i: String
+  eventName_not_ends_with_i: String
+  eventName_in: [String]
+  eventName_not_in: [String]
+  customInputs: EventTypeCustomInputWhereInput
+  customInputs_is_null: Boolean
+  timeZone: String
+  timeZone_not: String
+  timeZone_contains: String
+  timeZone_not_contains: String
+  timeZone_starts_with: String
+  timeZone_not_starts_with: String
+  timeZone_ends_with: String
+  timeZone_not_ends_with: String
+  timeZone_i: String
+  timeZone_not_i: String
+  timeZone_contains_i: String
+  timeZone_not_contains_i: String
+  timeZone_starts_with_i: String
+  timeZone_not_starts_with_i: String
+  timeZone_ends_with_i: String
+  timeZone_not_ends_with_i: String
+  timeZone_in: [String]
+  timeZone_not_in: [String]
+  periodType: String
+  periodType_not: String
+  periodType_in: [String]
+  periodType_not_in: [String]
+  periodStartDate: String
+  periodStartDate_not: String
+  periodStartDate_lt: String
+  periodStartDate_lte: String
+  periodStartDate_gt: String
+  periodStartDate_gte: String
+  periodStartDate_in: [String]
+  periodStartDate_not_in: [String]
+  periodEndDate: String
+  periodEndDate_not: String
+  periodEndDate_lt: String
+  periodEndDate_lte: String
+  periodEndDate_gt: String
+  periodEndDate_gte: String
+  periodEndDate_in: [String]
+  periodEndDate_not_in: [String]
+  periodDays: Int
+  periodDays_not: Int
+  periodDays_lt: Int
+  periodDays_lte: Int
+  periodDays_gt: Int
+  periodDays_gte: Int
+  periodDays_in: [Int]
+  periodDays_not_in: [Int]
+  periodCountCalendarDays: Boolean
+  periodCountCalendarDays_not: Boolean
+  requiresConfirmation: Boolean
+  requiresConfirmation_not: Boolean
+  minimumBookingNotice: Int
+  minimumBookingNotice_not: Int
+  minimumBookingNotice_lt: Int
+  minimumBookingNotice_lte: Int
+  minimumBookingNotice_gt: Int
+  minimumBookingNotice_gte: Int
+  minimumBookingNotice_in: [Int]
+  minimumBookingNotice_not_in: [Int]
+}
+
+input EventTypeWhereUniqueInput {
+  id: ID
+}
+
+enum SortEventTypesBy {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  description_ASC
+  description_DESC
+  length_ASC
+  length_DESC
+  hidden_ASC
+  hidden_DESC
+  eventName_ASC
+  eventName_DESC
+  timeZone_ASC
+  timeZone_DESC
+  periodType_ASC
+  periodType_DESC
+  periodStartDate_ASC
+  periodStartDate_DESC
+  periodEndDate_ASC
+  periodEndDate_DESC
+  periodDays_ASC
+  periodDays_DESC
+  periodCountCalendarDays_ASC
+  periodCountCalendarDays_DESC
+  requiresConfirmation_ASC
+  requiresConfirmation_DESC
+  minimumBookingNotice_ASC
+  minimumBookingNotice_DESC
+}
+
+input EventTypeOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  slug: OrderDirection
+  description: OrderDirection
+  length: OrderDirection
+  hidden: OrderDirection
+  eventName: OrderDirection
+  timeZone: OrderDirection
+  periodType: OrderDirection
+  periodStartDate: OrderDirection
+  periodEndDate: OrderDirection
+  periodDays: OrderDirection
+  periodCountCalendarDays: OrderDirection
+  requiresConfirmation: OrderDirection
+  minimumBookingNotice: OrderDirection
+}
+
+input EventTypeUpdateInput {
+  title: String
+  slug: String
+  description: String
+  locations: JSON
+  length: Int
+  hidden: Boolean
+  user: UserRelateToOneInput
+  bookings: BookingRelateToOneInput
+  availability: AvailabilityRelateToOneInput
+  eventName: String
+  customInputs: EventTypeCustomInputRelateToOneInput
+  timeZone: String
+  periodType: String
+  periodStartDate: String
+  periodEndDate: String
+  periodDays: Int
+  periodCountCalendarDays: Boolean
+  requiresConfirmation: Boolean
+  minimumBookingNotice: Int
+}
+
+input BookingRelateToOneInput {
+  create: BookingCreateInput
+  connect: BookingWhereUniqueInput
+  disconnect: BookingWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input AvailabilityRelateToOneInput {
+  create: AvailabilityCreateInput
+  connect: AvailabilityWhereUniqueInput
+  disconnect: AvailabilityWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input EventTypeCustomInputRelateToOneInput {
+  create: EventTypeCustomInputCreateInput
+  connect: EventTypeCustomInputWhereUniqueInput
+  disconnect: EventTypeCustomInputWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input EventTypesUpdateInput {
+  id: ID!
+  data: EventTypeUpdateInput
+}
+
+input EventTypeCreateInput {
+  title: String
+  slug: String
+  description: String
+  locations: JSON
+  length: Int
+  hidden: Boolean
+  user: UserRelateToOneInput
+  bookings: BookingRelateToOneInput
+  availability: AvailabilityRelateToOneInput
+  eventName: String
+  customInputs: EventTypeCustomInputRelateToOneInput
+  timeZone: String
+  periodType: String
+  periodStartDate: String
+  periodEndDate: String
+  periodDays: Int
+  periodCountCalendarDays: Boolean
+  requiresConfirmation: Boolean
+  minimumBookingNotice: Int
+}
+
+input EventTypesCreateInput {
+  data: EventTypeCreateInput
+}
+
+type Credential {
+  id: ID!
+  type: String
+  key: JSON
+  user: User
+}
+
+input CredentialWhereInput {
+  AND: [CredentialWhereInput!]
+  OR: [CredentialWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  type: String
+  type_not: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  type_i: String
+  type_not_i: String
+  type_contains_i: String
+  type_not_contains_i: String
+  type_starts_with_i: String
+  type_not_starts_with_i: String
+  type_ends_with_i: String
+  type_not_ends_with_i: String
+  type_in: [String]
+  type_not_in: [String]
+  user: UserWhereInput
+  user_is_null: Boolean
+}
+
+input CredentialWhereUniqueInput {
+  id: ID
+}
+
+enum SortCredentialsBy {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+}
+
+input CredentialOrderByInput {
+  id: OrderDirection
+  type: OrderDirection
+}
+
+input CredentialUpdateInput {
+  type: String
+  key: JSON
+  user: UserRelateToOneInput
+}
+
+input CredentialsUpdateInput {
+  id: ID!
+  data: CredentialUpdateInput
+}
+
+input CredentialCreateInput {
+  type: String
+  key: JSON
+  user: UserRelateToOneInput
+}
+
+input CredentialsCreateInput {
+  data: CredentialCreateInput
+}
+
+type Team {
+  id: ID!
+  name: String
+  slug: String
+  members: Membership
+}
+
+input TeamWhereInput {
+  AND: [TeamWhereInput!]
+  OR: [TeamWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  slug: String
+  slug_not: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  slug_i: String
+  slug_not_i: String
+  slug_contains_i: String
+  slug_not_contains_i: String
+  slug_starts_with_i: String
+  slug_not_starts_with_i: String
+  slug_ends_with_i: String
+  slug_not_ends_with_i: String
+  slug_in: [String]
+  slug_not_in: [String]
+  members: MembershipWhereInput
+  members_is_null: Boolean
+}
+
+input TeamWhereUniqueInput {
+  id: ID
+}
+
+enum SortTeamsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  slug_ASC
+  slug_DESC
+}
+
+input TeamOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  slug: OrderDirection
+}
+
+input TeamUpdateInput {
+  name: String
+  slug: String
+  members: MembershipRelateToOneInput
+}
+
+input MembershipRelateToOneInput {
+  create: MembershipCreateInput
+  connect: MembershipWhereUniqueInput
+  disconnect: MembershipWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input TeamsUpdateInput {
+  id: ID!
+  data: TeamUpdateInput
+}
+
+input TeamCreateInput {
+  name: String
+  slug: String
+  members: MembershipRelateToOneInput
+}
+
+input TeamsCreateInput {
+  data: TeamCreateInput
+}
+
+type Membership {
+  id: ID!
+  accepted: Boolean
+  role: String
+  team: Team
+  user: User
+}
+
+input MembershipWhereInput {
+  AND: [MembershipWhereInput!]
+  OR: [MembershipWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  accepted: Boolean
+  accepted_not: Boolean
+  role: String
+  role_not: String
+  role_in: [String]
+  role_not_in: [String]
+  team: TeamWhereInput
+  team_is_null: Boolean
+  user: UserWhereInput
+  user_is_null: Boolean
+}
+
+input MembershipWhereUniqueInput {
+  id: ID
+}
+
+enum SortMembershipsBy {
+  id_ASC
+  id_DESC
+  accepted_ASC
+  accepted_DESC
+  role_ASC
+  role_DESC
+}
+
+input MembershipOrderByInput {
+  id: OrderDirection
+  accepted: OrderDirection
+  role: OrderDirection
+}
+
+input MembershipUpdateInput {
+  accepted: Boolean
+  role: String
+  team: TeamRelateToOneInput
+  user: UserRelateToOneInput
+}
+
+input TeamRelateToOneInput {
+  create: TeamCreateInput
+  connect: TeamWhereUniqueInput
+  disconnect: TeamWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input MembershipsUpdateInput {
+  id: ID!
+  data: MembershipUpdateInput
+}
+
+input MembershipCreateInput {
+  accepted: Boolean
+  role: String
+  team: TeamRelateToOneInput
+  user: UserRelateToOneInput
+}
+
+input MembershipsCreateInput {
+  data: MembershipCreateInput
+}
+
+type verificationRequest {
+  id: ID!
+  identifier: String
+  token: String
+  expires: String
+  createdAt: String
+  updatedAt: String
+}
+
+input verificationRequestWhereInput {
+  AND: [verificationRequestWhereInput!]
+  OR: [verificationRequestWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  identifier: String
+  identifier_not: String
+  identifier_contains: String
+  identifier_not_contains: String
+  identifier_starts_with: String
+  identifier_not_starts_with: String
+  identifier_ends_with: String
+  identifier_not_ends_with: String
+  identifier_i: String
+  identifier_not_i: String
+  identifier_contains_i: String
+  identifier_not_contains_i: String
+  identifier_starts_with_i: String
+  identifier_not_starts_with_i: String
+  identifier_ends_with_i: String
+  identifier_not_ends_with_i: String
+  identifier_in: [String]
+  identifier_not_in: [String]
+  token: String
+  token_not: String
+  token_contains: String
+  token_not_contains: String
+  token_starts_with: String
+  token_not_starts_with: String
+  token_ends_with: String
+  token_not_ends_with: String
+  token_i: String
+  token_not_i: String
+  token_contains_i: String
+  token_not_contains_i: String
+  token_starts_with_i: String
+  token_not_starts_with_i: String
+  token_ends_with_i: String
+  token_not_ends_with_i: String
+  token_in: [String]
+  token_not_in: [String]
+  expires: String
+  expires_not: String
+  expires_lt: String
+  expires_lte: String
+  expires_gt: String
+  expires_gte: String
+  expires_in: [String]
+  expires_not_in: [String]
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+  updatedAt: String
+  updatedAt_not: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedAt_in: [String]
+  updatedAt_not_in: [String]
+}
+
+input verificationRequestWhereUniqueInput {
+  id: ID
+  token: String
+}
+
+enum SortVerificationRequestsBy {
+  id_ASC
+  id_DESC
+  identifier_ASC
+  identifier_DESC
+  token_ASC
+  token_DESC
+  expires_ASC
+  expires_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input verificationRequestOrderByInput {
+  id: OrderDirection
+  identifier: OrderDirection
+  token: OrderDirection
+  expires: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+}
+
+input verificationRequestUpdateInput {
+  identifier: String
+  token: String
+  expires: String
+  createdAt: String
+  updatedAt: String
+}
+
+input VerificationRequestsUpdateInput {
+  id: ID!
+  data: verificationRequestUpdateInput
+}
+
+input verificationRequestCreateInput {
+  identifier: String
+  token: String
+  expires: String
+  createdAt: String
+  updatedAt: String
+}
+
+input VerificationRequestsCreateInput {
+  data: verificationRequestCreateInput
+}
+
+type BookingRef {
+  id: ID!
+  type: String
+  uid: String
+  booking: Booking
+}
+
+input BookingRefWhereInput {
+  AND: [BookingRefWhereInput!]
+  OR: [BookingRefWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  type: String
+  type_not: String
+  type_contains: String
+  type_not_contains: String
+  type_starts_with: String
+  type_not_starts_with: String
+  type_ends_with: String
+  type_not_ends_with: String
+  type_i: String
+  type_not_i: String
+  type_contains_i: String
+  type_not_contains_i: String
+  type_starts_with_i: String
+  type_not_starts_with_i: String
+  type_ends_with_i: String
+  type_not_ends_with_i: String
+  type_in: [String]
+  type_not_in: [String]
+  uid: String
+  uid_not: String
+  uid_contains: String
+  uid_not_contains: String
+  uid_starts_with: String
+  uid_not_starts_with: String
+  uid_ends_with: String
+  uid_not_ends_with: String
+  uid_i: String
+  uid_not_i: String
+  uid_contains_i: String
+  uid_not_contains_i: String
+  uid_starts_with_i: String
+  uid_not_starts_with_i: String
+  uid_ends_with_i: String
+  uid_not_ends_with_i: String
+  uid_in: [String]
+  uid_not_in: [String]
+  booking: BookingWhereInput
+  booking_is_null: Boolean
+}
+
+input BookingRefWhereUniqueInput {
+  id: ID
+}
+
+enum SortBookingRefsBy {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  uid_ASC
+  uid_DESC
+}
+
+input BookingRefOrderByInput {
+  id: OrderDirection
+  type: OrderDirection
+  uid: OrderDirection
+}
+
+input BookingRefUpdateInput {
+  type: String
+  uid: String
+  booking: BookingRelateToOneInput
+}
+
+input BookingRefsUpdateInput {
+  id: ID!
+  data: BookingRefUpdateInput
+}
+
+input BookingRefCreateInput {
+  type: String
+  uid: String
+  booking: BookingRelateToOneInput
+}
+
+input BookingRefsCreateInput {
+  data: BookingRefCreateInput
+}
+
+type Attendee {
+  id: ID!
+  email: String
+  name: String
+  timeZone: String
+  booking: Booking
+}
+
+input AttendeeWhereInput {
+  AND: [AttendeeWhereInput!]
+  OR: [AttendeeWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  email: String
+  email_not: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  email_i: String
+  email_not_i: String
+  email_contains_i: String
+  email_not_contains_i: String
+  email_starts_with_i: String
+  email_not_starts_with_i: String
+  email_ends_with_i: String
+  email_not_ends_with_i: String
+  email_in: [String]
+  email_not_in: [String]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  timeZone: String
+  timeZone_not: String
+  timeZone_contains: String
+  timeZone_not_contains: String
+  timeZone_starts_with: String
+  timeZone_not_starts_with: String
+  timeZone_ends_with: String
+  timeZone_not_ends_with: String
+  timeZone_i: String
+  timeZone_not_i: String
+  timeZone_contains_i: String
+  timeZone_not_contains_i: String
+  timeZone_starts_with_i: String
+  timeZone_not_starts_with_i: String
+  timeZone_ends_with_i: String
+  timeZone_not_ends_with_i: String
+  timeZone_in: [String]
+  timeZone_not_in: [String]
+  booking: BookingWhereInput
+  booking_is_null: Boolean
+}
+
+input AttendeeWhereUniqueInput {
+  id: ID
+}
+
+enum SortAttendeesBy {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  name_ASC
+  name_DESC
+  timeZone_ASC
+  timeZone_DESC
+}
+
+input AttendeeOrderByInput {
+  id: OrderDirection
+  email: OrderDirection
+  name: OrderDirection
+  timeZone: OrderDirection
+}
+
+input AttendeeUpdateInput {
+  email: String
+  name: String
+  timeZone: String
+  booking: BookingRelateToOneInput
+}
+
+input AttendeesUpdateInput {
+  id: ID!
+  data: AttendeeUpdateInput
+}
+
+input AttendeeCreateInput {
+  email: String
+  name: String
+  timeZone: String
+  booking: BookingRelateToOneInput
+}
+
+input AttendeesCreateInput {
+  data: AttendeeCreateInput
+}
+
+type Booking {
+  id: ID!
+  uid: String
+  user: User
+  references: BookingRef
+  eventType: EventType
+  title: String
+  description: String
+  startTime: String
+  endTime: String
+  attendees: Attendee
+  location: String
+  createdAt: String
+  updatedAt: String
+  confirmed: Boolean
+  rejected: Boolean
+}
+
+input BookingWhereInput {
+  AND: [BookingWhereInput!]
+  OR: [BookingWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  uid: String
+  uid_not: String
+  uid_contains: String
+  uid_not_contains: String
+  uid_starts_with: String
+  uid_not_starts_with: String
+  uid_ends_with: String
+  uid_not_ends_with: String
+  uid_i: String
+  uid_not_i: String
+  uid_contains_i: String
+  uid_not_contains_i: String
+  uid_starts_with_i: String
+  uid_not_starts_with_i: String
+  uid_ends_with_i: String
+  uid_not_ends_with_i: String
+  uid_in: [String]
+  uid_not_in: [String]
+  user: UserWhereInput
+  user_is_null: Boolean
+  references: BookingRefWhereInput
+  references_is_null: Boolean
+  eventType: EventTypeWhereInput
+  eventType_is_null: Boolean
+  title: String
+  title_not: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  title_i: String
+  title_not_i: String
+  title_contains_i: String
+  title_not_contains_i: String
+  title_starts_with_i: String
+  title_not_starts_with_i: String
+  title_ends_with_i: String
+  title_not_ends_with_i: String
+  title_in: [String]
+  title_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  startTime: String
+  startTime_not: String
+  startTime_lt: String
+  startTime_lte: String
+  startTime_gt: String
+  startTime_gte: String
+  startTime_in: [String]
+  startTime_not_in: [String]
+  endTime: String
+  endTime_not: String
+  endTime_lt: String
+  endTime_lte: String
+  endTime_gt: String
+  endTime_gte: String
+  endTime_in: [String]
+  endTime_not_in: [String]
+  attendees: AttendeeWhereInput
+  attendees_is_null: Boolean
+  location: String
+  location_not: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  location_i: String
+  location_not_i: String
+  location_contains_i: String
+  location_not_contains_i: String
+  location_starts_with_i: String
+  location_not_starts_with_i: String
+  location_ends_with_i: String
+  location_not_ends_with_i: String
+  location_in: [String]
+  location_not_in: [String]
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+  updatedAt: String
+  updatedAt_not: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedAt_in: [String]
+  updatedAt_not_in: [String]
+  confirmed: Boolean
+  confirmed_not: Boolean
+  rejected: Boolean
+  rejected_not: Boolean
+}
+
+input BookingWhereUniqueInput {
+  id: ID
+  uid: String
+}
+
+enum SortBookingsBy {
+  id_ASC
+  id_DESC
+  uid_ASC
+  uid_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  startTime_ASC
+  startTime_DESC
+  endTime_ASC
+  endTime_DESC
+  location_ASC
+  location_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  confirmed_ASC
+  confirmed_DESC
+  rejected_ASC
+  rejected_DESC
+}
+
+input BookingOrderByInput {
+  id: OrderDirection
+  uid: OrderDirection
+  title: OrderDirection
+  description: OrderDirection
+  startTime: OrderDirection
+  endTime: OrderDirection
+  location: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+  confirmed: OrderDirection
+  rejected: OrderDirection
+}
+
+input BookingUpdateInput {
+  uid: String
+  user: UserRelateToOneInput
+  references: BookingRefRelateToOneInput
+  eventType: EventTypeRelateToOneInput
+  title: String
+  description: String
+  startTime: String
+  endTime: String
+  attendees: AttendeeRelateToOneInput
+  location: String
+  createdAt: String
+  updatedAt: String
+  confirmed: Boolean
+  rejected: Boolean
+}
+
+input BookingRefRelateToOneInput {
+  create: BookingRefCreateInput
+  connect: BookingRefWhereUniqueInput
+  disconnect: BookingRefWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input EventTypeRelateToOneInput {
+  create: EventTypeCreateInput
+  connect: EventTypeWhereUniqueInput
+  disconnect: EventTypeWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input AttendeeRelateToOneInput {
+  create: AttendeeCreateInput
+  connect: AttendeeWhereUniqueInput
+  disconnect: AttendeeWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input BookingsUpdateInput {
+  id: ID!
+  data: BookingUpdateInput
+}
+
+input BookingCreateInput {
+  uid: String
+  user: UserRelateToOneInput
+  references: BookingRefRelateToOneInput
+  eventType: EventTypeRelateToOneInput
+  title: String
+  description: String
+  startTime: String
+  endTime: String
+  attendees: AttendeeRelateToOneInput
+  location: String
+  createdAt: String
+  updatedAt: String
+  confirmed: Boolean
+  rejected: Boolean
+}
+
+input BookingsCreateInput {
+  data: BookingCreateInput
+}
+
+type Availability {
+  id: ID!
+  label: String
+  user: User
+  eventType: EventType
+  startTime: Int
+  endTime: Int
+  date: String
+}
+
+input AvailabilityWhereInput {
+  AND: [AvailabilityWhereInput!]
+  OR: [AvailabilityWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  label: String
+  label_not: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  label_i: String
+  label_not_i: String
+  label_contains_i: String
+  label_not_contains_i: String
+  label_starts_with_i: String
+  label_not_starts_with_i: String
+  label_ends_with_i: String
+  label_not_ends_with_i: String
+  label_in: [String]
+  label_not_in: [String]
+  user: UserWhereInput
+  user_is_null: Boolean
+  eventType: EventTypeWhereInput
+  eventType_is_null: Boolean
+  startTime: Int
+  startTime_not: Int
+  startTime_lt: Int
+  startTime_lte: Int
+  startTime_gt: Int
+  startTime_gte: Int
+  startTime_in: [Int]
+  startTime_not_in: [Int]
+  endTime: Int
+  endTime_not: Int
+  endTime_lt: Int
+  endTime_lte: Int
+  endTime_gt: Int
+  endTime_gte: Int
+  endTime_in: [Int]
+  endTime_not_in: [Int]
+  date: String
+  date_not: String
+  date_lt: String
+  date_lte: String
+  date_gt: String
+  date_gte: String
+  date_in: [String]
+  date_not_in: [String]
+}
+
+input AvailabilityWhereUniqueInput {
+  id: ID
+}
+
+enum SortAvailabilitiesBy {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  startTime_ASC
+  startTime_DESC
+  endTime_ASC
+  endTime_DESC
+  date_ASC
+  date_DESC
+}
+
+input AvailabilityOrderByInput {
+  id: OrderDirection
+  label: OrderDirection
+  startTime: OrderDirection
+  endTime: OrderDirection
+  date: OrderDirection
+}
+
+input AvailabilityUpdateInput {
+  label: String
+  user: UserRelateToOneInput
+  eventType: EventTypeRelateToOneInput
+  startTime: Int
+  endTime: Int
+  date: String
+}
+
+input AvailabilitiesUpdateInput {
+  id: ID!
+  data: AvailabilityUpdateInput
+}
+
+input AvailabilityCreateInput {
+  label: String
+  user: UserRelateToOneInput
+  eventType: EventTypeRelateToOneInput
+  startTime: Int
+  endTime: Int
+  date: String
+}
+
+input AvailabilitiesCreateInput {
+  data: AvailabilityCreateInput
+}
+
+type SelectedCalender {
+  id: ID!
+  user: User
+  integration: String
+  externalId: String
+}
+
+input SelectedCalenderWhereInput {
+  AND: [SelectedCalenderWhereInput!]
+  OR: [SelectedCalenderWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  user: UserWhereInput
+  user_is_null: Boolean
+  integration: String
+  integration_not: String
+  integration_contains: String
+  integration_not_contains: String
+  integration_starts_with: String
+  integration_not_starts_with: String
+  integration_ends_with: String
+  integration_not_ends_with: String
+  integration_i: String
+  integration_not_i: String
+  integration_contains_i: String
+  integration_not_contains_i: String
+  integration_starts_with_i: String
+  integration_not_starts_with_i: String
+  integration_ends_with_i: String
+  integration_not_ends_with_i: String
+  integration_in: [String]
+  integration_not_in: [String]
+  externalId: String
+  externalId_not: String
+  externalId_contains: String
+  externalId_not_contains: String
+  externalId_starts_with: String
+  externalId_not_starts_with: String
+  externalId_ends_with: String
+  externalId_not_ends_with: String
+  externalId_i: String
+  externalId_not_i: String
+  externalId_contains_i: String
+  externalId_not_contains_i: String
+  externalId_starts_with_i: String
+  externalId_not_starts_with_i: String
+  externalId_ends_with_i: String
+  externalId_not_ends_with_i: String
+  externalId_in: [String]
+  externalId_not_in: [String]
+}
+
+input SelectedCalenderWhereUniqueInput {
+  id: ID
+}
+
+enum SortSelectedCalendersBy {
+  id_ASC
+  id_DESC
+  integration_ASC
+  integration_DESC
+  externalId_ASC
+  externalId_DESC
+}
+
+input SelectedCalenderOrderByInput {
+  id: OrderDirection
+  integration: OrderDirection
+  externalId: OrderDirection
+}
+
+input SelectedCalenderUpdateInput {
+  user: UserRelateToOneInput
+  integration: String
+  externalId: String
+}
+
+input SelectedCalendersUpdateInput {
+  id: ID!
+  data: SelectedCalenderUpdateInput
+}
+
+input SelectedCalenderCreateInput {
+  user: UserRelateToOneInput
+  integration: String
+  externalId: String
+}
+
+input SelectedCalendersCreateInput {
+  data: SelectedCalenderCreateInput
+}
+
+type ResetPasswordRequest {
+  id: ID!
+  createdAt: String
+  updatedAt: String
+  email: String
+  expires: String
+}
+
+input ResetPasswordRequestWhereInput {
+  AND: [ResetPasswordRequestWhereInput!]
+  OR: [ResetPasswordRequestWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+  updatedAt: String
+  updatedAt_not: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedAt_in: [String]
+  updatedAt_not_in: [String]
+  email: String
+  email_not: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  email_i: String
+  email_not_i: String
+  email_contains_i: String
+  email_not_contains_i: String
+  email_starts_with_i: String
+  email_not_starts_with_i: String
+  email_ends_with_i: String
+  email_not_ends_with_i: String
+  email_in: [String]
+  email_not_in: [String]
+  expires: String
+  expires_not: String
+  expires_lt: String
+  expires_lte: String
+  expires_gt: String
+  expires_gte: String
+  expires_in: [String]
+  expires_not_in: [String]
+}
+
+input ResetPasswordRequestWhereUniqueInput {
+  id: ID
+}
+
+enum SortResetPasswordRequestsBy {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  email_ASC
+  email_DESC
+  expires_ASC
+  expires_DESC
+}
+
+input ResetPasswordRequestOrderByInput {
+  id: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+  email: OrderDirection
+  expires: OrderDirection
+}
+
+input ResetPasswordRequestUpdateInput {
+  createdAt: String
+  updatedAt: String
+  email: String
+  expires: String
+}
+
+input ResetPasswordRequestsUpdateInput {
+  id: ID!
+  data: ResetPasswordRequestUpdateInput
+}
+
+input ResetPasswordRequestCreateInput {
+  createdAt: String
+  updatedAt: String
+  email: String
+  expires: String
+}
+
+input ResetPasswordRequestsCreateInput {
+  data: ResetPasswordRequestCreateInput
+}
+
+type RemainderMail {
+  id: ID!
+  referenceId: Int
+  reminderType: Int
+  elapsedMinutes: Int
+  createdAt: String
+}
+
+input RemainderMailWhereInput {
+  AND: [RemainderMailWhereInput!]
+  OR: [RemainderMailWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  referenceId: Int
+  referenceId_not: Int
+  referenceId_lt: Int
+  referenceId_lte: Int
+  referenceId_gt: Int
+  referenceId_gte: Int
+  referenceId_in: [Int]
+  referenceId_not_in: [Int]
+  reminderType: Int
+  reminderType_not: Int
+  reminderType_lt: Int
+  reminderType_lte: Int
+  reminderType_gt: Int
+  reminderType_gte: Int
+  reminderType_in: [Int]
+  reminderType_not_in: [Int]
+  elapsedMinutes: Int
+  elapsedMinutes_not: Int
+  elapsedMinutes_lt: Int
+  elapsedMinutes_lte: Int
+  elapsedMinutes_gt: Int
+  elapsedMinutes_gte: Int
+  elapsedMinutes_in: [Int]
+  elapsedMinutes_not_in: [Int]
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+}
+
+input RemainderMailWhereUniqueInput {
+  id: ID
+}
+
+enum SortRemainderMailsBy {
+  id_ASC
+  id_DESC
+  referenceId_ASC
+  referenceId_DESC
+  reminderType_ASC
+  reminderType_DESC
+  elapsedMinutes_ASC
+  elapsedMinutes_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input RemainderMailOrderByInput {
+  id: OrderDirection
+  referenceId: OrderDirection
+  reminderType: OrderDirection
+  elapsedMinutes: OrderDirection
+  createdAt: OrderDirection
+}
+
+input RemainderMailUpdateInput {
+  referenceId: Int
+  reminderType: Int
+  elapsedMinutes: Int
+  createdAt: String
+}
+
+input RemainderMailsUpdateInput {
+  id: ID!
+  data: RemainderMailUpdateInput
+}
+
+input RemainderMailCreateInput {
+  referenceId: Int
+  reminderType: Int
+  elapsedMinutes: Int
+  createdAt: String
+}
+
+input RemainderMailsCreateInput {
+  data: RemainderMailCreateInput
+}
+
+type EventTypeCustomInput {
+  id: ID!
+  eventType: EventType
+  label: String
+  required: Boolean
+  placeholder: String
+}
+
+input EventTypeCustomInputWhereInput {
+  AND: [EventTypeCustomInputWhereInput!]
+  OR: [EventTypeCustomInputWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  eventType: EventTypeWhereInput
+  eventType_is_null: Boolean
+  label: String
+  label_not: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  label_i: String
+  label_not_i: String
+  label_contains_i: String
+  label_not_contains_i: String
+  label_starts_with_i: String
+  label_not_starts_with_i: String
+  label_ends_with_i: String
+  label_not_ends_with_i: String
+  label_in: [String]
+  label_not_in: [String]
+  required: Boolean
+  required_not: Boolean
+  placeholder: String
+  placeholder_not: String
+  placeholder_contains: String
+  placeholder_not_contains: String
+  placeholder_starts_with: String
+  placeholder_not_starts_with: String
+  placeholder_ends_with: String
+  placeholder_not_ends_with: String
+  placeholder_i: String
+  placeholder_not_i: String
+  placeholder_contains_i: String
+  placeholder_not_contains_i: String
+  placeholder_starts_with_i: String
+  placeholder_not_starts_with_i: String
+  placeholder_ends_with_i: String
+  placeholder_not_ends_with_i: String
+  placeholder_in: [String]
+  placeholder_not_in: [String]
+}
+
+input EventTypeCustomInputWhereUniqueInput {
+  id: ID
+}
+
+enum SortEventTypeCustomInputsBy {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  required_ASC
+  required_DESC
+  placeholder_ASC
+  placeholder_DESC
+}
+
+input EventTypeCustomInputOrderByInput {
+  id: OrderDirection
+  label: OrderDirection
+  required: OrderDirection
+  placeholder: OrderDirection
+}
+
+input EventTypeCustomInputUpdateInput {
+  eventType: EventTypeRelateToOneInput
+  label: String
+  required: Boolean
+  placeholder: String
+}
+
+input EventTypeCustomInputsUpdateInput {
+  id: ID!
+  data: EventTypeCustomInputUpdateInput
+}
+
+input EventTypeCustomInputCreateInput {
+  eventType: EventTypeRelateToOneInput
+  label: String
+  required: Boolean
+  placeholder: String
+}
+
+input EventTypeCustomInputsCreateInput {
+  data: EventTypeCustomInputCreateInput
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+  @specifiedBy(
+    url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf"
+  )
+
+type Mutation {
+  createUser(data: UserCreateInput): User
+  createUsers(data: [UsersCreateInput]): [User]
+  updateUser(id: ID!, data: UserUpdateInput): User
+  updateUsers(data: [UsersUpdateInput]): [User]
+  deleteUser(id: ID!): User
+  deleteUsers(ids: [ID!]): [User]
+  createMeeting(data: MeetingCreateInput): Meeting
+  createMeetings(data: [MeetingsCreateInput]): [Meeting]
+  updateMeeting(id: ID!, data: MeetingUpdateInput): Meeting
+  updateMeetings(data: [MeetingsUpdateInput]): [Meeting]
+  deleteMeeting(id: ID!): Meeting
+  deleteMeetings(ids: [ID!]): [Meeting]
+  createEventType(data: EventTypeCreateInput): EventType
+  createEventTypes(data: [EventTypesCreateInput]): [EventType]
+  updateEventType(id: ID!, data: EventTypeUpdateInput): EventType
+  updateEventTypes(data: [EventTypesUpdateInput]): [EventType]
+  deleteEventType(id: ID!): EventType
+  deleteEventTypes(ids: [ID!]): [EventType]
+  createCredential(data: CredentialCreateInput): Credential
+  createCredentials(data: [CredentialsCreateInput]): [Credential]
+  updateCredential(id: ID!, data: CredentialUpdateInput): Credential
+  updateCredentials(data: [CredentialsUpdateInput]): [Credential]
+  deleteCredential(id: ID!): Credential
+  deleteCredentials(ids: [ID!]): [Credential]
+  createTeam(data: TeamCreateInput): Team
+  createTeams(data: [TeamsCreateInput]): [Team]
+  updateTeam(id: ID!, data: TeamUpdateInput): Team
+  updateTeams(data: [TeamsUpdateInput]): [Team]
+  deleteTeam(id: ID!): Team
+  deleteTeams(ids: [ID!]): [Team]
+  createMembership(data: MembershipCreateInput): Membership
+  createMemberships(data: [MembershipsCreateInput]): [Membership]
+  updateMembership(id: ID!, data: MembershipUpdateInput): Membership
+  updateMemberships(data: [MembershipsUpdateInput]): [Membership]
+  deleteMembership(id: ID!): Membership
+  deleteMemberships(ids: [ID!]): [Membership]
+  createverificationRequest(
+    data: verificationRequestCreateInput
+  ): verificationRequest
+  createVerificationRequests(
+    data: [VerificationRequestsCreateInput]
+  ): [verificationRequest]
+  updateverificationRequest(
+    id: ID!
+    data: verificationRequestUpdateInput
+  ): verificationRequest
+  updateVerificationRequests(
+    data: [VerificationRequestsUpdateInput]
+  ): [verificationRequest]
+  deleteverificationRequest(id: ID!): verificationRequest
+  deleteVerificationRequests(ids: [ID!]): [verificationRequest]
+  createBookingRef(data: BookingRefCreateInput): BookingRef
+  createBookingRefs(data: [BookingRefsCreateInput]): [BookingRef]
+  updateBookingRef(id: ID!, data: BookingRefUpdateInput): BookingRef
+  updateBookingRefs(data: [BookingRefsUpdateInput]): [BookingRef]
+  deleteBookingRef(id: ID!): BookingRef
+  deleteBookingRefs(ids: [ID!]): [BookingRef]
+  createAttendee(data: AttendeeCreateInput): Attendee
+  createAttendees(data: [AttendeesCreateInput]): [Attendee]
+  updateAttendee(id: ID!, data: AttendeeUpdateInput): Attendee
+  updateAttendees(data: [AttendeesUpdateInput]): [Attendee]
+  deleteAttendee(id: ID!): Attendee
+  deleteAttendees(ids: [ID!]): [Attendee]
+  createBooking(data: BookingCreateInput): Booking
+  createBookings(data: [BookingsCreateInput]): [Booking]
+  updateBooking(id: ID!, data: BookingUpdateInput): Booking
+  updateBookings(data: [BookingsUpdateInput]): [Booking]
+  deleteBooking(id: ID!): Booking
+  deleteBookings(ids: [ID!]): [Booking]
+  createAvailability(data: AvailabilityCreateInput): Availability
+  createAvailabilities(data: [AvailabilitiesCreateInput]): [Availability]
+  updateAvailability(id: ID!, data: AvailabilityUpdateInput): Availability
+  updateAvailabilities(data: [AvailabilitiesUpdateInput]): [Availability]
+  deleteAvailability(id: ID!): Availability
+  deleteAvailabilities(ids: [ID!]): [Availability]
+  createSelectedCalender(data: SelectedCalenderCreateInput): SelectedCalender
+  createSelectedCalenders(
+    data: [SelectedCalendersCreateInput]
+  ): [SelectedCalender]
+  updateSelectedCalender(
+    id: ID!
+    data: SelectedCalenderUpdateInput
+  ): SelectedCalender
+  updateSelectedCalenders(
+    data: [SelectedCalendersUpdateInput]
+  ): [SelectedCalender]
+  deleteSelectedCalender(id: ID!): SelectedCalender
+  deleteSelectedCalenders(ids: [ID!]): [SelectedCalender]
+  createResetPasswordRequest(
+    data: ResetPasswordRequestCreateInput
+  ): ResetPasswordRequest
+  createResetPasswordRequests(
+    data: [ResetPasswordRequestsCreateInput]
+  ): [ResetPasswordRequest]
+  updateResetPasswordRequest(
+    id: ID!
+    data: ResetPasswordRequestUpdateInput
+  ): ResetPasswordRequest
+  updateResetPasswordRequests(
+    data: [ResetPasswordRequestsUpdateInput]
+  ): [ResetPasswordRequest]
+  deleteResetPasswordRequest(id: ID!): ResetPasswordRequest
+  deleteResetPasswordRequests(ids: [ID!]): [ResetPasswordRequest]
+  createRemainderMail(data: RemainderMailCreateInput): RemainderMail
+  createRemainderMails(data: [RemainderMailsCreateInput]): [RemainderMail]
+  updateRemainderMail(id: ID!, data: RemainderMailUpdateInput): RemainderMail
+  updateRemainderMails(data: [RemainderMailsUpdateInput]): [RemainderMail]
+  deleteRemainderMail(id: ID!): RemainderMail
+  deleteRemainderMails(ids: [ID!]): [RemainderMail]
+  createEventTypeCustomInput(
+    data: EventTypeCustomInputCreateInput
+  ): EventTypeCustomInput
+  createEventTypeCustomInputs(
+    data: [EventTypeCustomInputsCreateInput]
+  ): [EventTypeCustomInput]
+  updateEventTypeCustomInput(
+    id: ID!
+    data: EventTypeCustomInputUpdateInput
+  ): EventTypeCustomInput
+  updateEventTypeCustomInputs(
+    data: [EventTypeCustomInputsUpdateInput]
+  ): [EventTypeCustomInput]
+  deleteEventTypeCustomInput(id: ID!): EventTypeCustomInput
+  deleteEventTypeCustomInputs(ids: [ID!]): [EventTypeCustomInput]
+  authenticateUserWithPassword(
+    email: String!
+    password: String!
+  ): UserAuthenticationWithPasswordResult!
+  createInitialUser(
+    data: CreateInitialUserInput!
+  ): UserAuthenticationWithPasswordSuccess!
+  endSession: Boolean!
+}
+
+union AuthenticatedItem = User
+
+union UserAuthenticationWithPasswordResult =
+    UserAuthenticationWithPasswordSuccess
+  | UserAuthenticationWithPasswordFailure
+
+type UserAuthenticationWithPasswordSuccess {
+  sessionToken: String!
+  item: User!
+}
+
+type UserAuthenticationWithPasswordFailure {
+  code: PasswordAuthErrorCode!
+  message: String!
+}
+
+enum PasswordAuthErrorCode {
+  FAILURE
+  IDENTITY_NOT_FOUND
+  SECRET_NOT_SET
+  MULTIPLE_IDENTITY_MATCHES
+  SECRET_MISMATCH
+}
+
+input CreateInitialUserInput {
+  name: String
+  email: String
+  password: String
+}
+
+type Query {
+  allUsers(
+    where: UserWhereInput! = {}
+    search: String
+    sortBy: [SortUsersBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [User!]
+  User(where: UserWhereUniqueInput!): User
+  _allUsersMeta(
+    where: UserWhereInput! = {}
+    search: String
+    sortBy: [SortUsersBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [UserOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use usersCount instead."
+    )
+  usersCount(where: UserWhereInput! = {}): Int
+  allMeetings(
+    where: MeetingWhereInput! = {}
+    search: String
+    sortBy: [SortMeetingsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [MeetingOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Meeting!]
+  Meeting(where: MeetingWhereUniqueInput!): Meeting
+  _allMeetingsMeta(
+    where: MeetingWhereInput! = {}
+    search: String
+    sortBy: [SortMeetingsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [MeetingOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use meetingsCount instead."
+    )
+  meetingsCount(where: MeetingWhereInput! = {}): Int
+  allEventTypes(
+    where: EventTypeWhereInput! = {}
+    search: String
+    sortBy: [SortEventTypesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [EventTypeOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [EventType!]
+  EventType(where: EventTypeWhereUniqueInput!): EventType
+  _allEventTypesMeta(
+    where: EventTypeWhereInput! = {}
+    search: String
+    sortBy: [SortEventTypesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [EventTypeOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use eventTypesCount instead."
+    )
+  eventTypesCount(where: EventTypeWhereInput! = {}): Int
+  allCredentials(
+    where: CredentialWhereInput! = {}
+    search: String
+    sortBy: [SortCredentialsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CredentialOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Credential!]
+  Credential(where: CredentialWhereUniqueInput!): Credential
+  _allCredentialsMeta(
+    where: CredentialWhereInput! = {}
+    search: String
+    sortBy: [SortCredentialsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [CredentialOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use credentialsCount instead."
+    )
+  credentialsCount(where: CredentialWhereInput! = {}): Int
+  allTeams(
+    where: TeamWhereInput! = {}
+    search: String
+    sortBy: [SortTeamsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [TeamOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Team!]
+  Team(where: TeamWhereUniqueInput!): Team
+  _allTeamsMeta(
+    where: TeamWhereInput! = {}
+    search: String
+    sortBy: [SortTeamsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [TeamOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use teamsCount instead."
+    )
+  teamsCount(where: TeamWhereInput! = {}): Int
+  allMemberships(
+    where: MembershipWhereInput! = {}
+    search: String
+    sortBy: [SortMembershipsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [MembershipOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Membership!]
+  Membership(where: MembershipWhereUniqueInput!): Membership
+  _allMembershipsMeta(
+    where: MembershipWhereInput! = {}
+    search: String
+    sortBy: [SortMembershipsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [MembershipOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use membershipsCount instead."
+    )
+  membershipsCount(where: MembershipWhereInput! = {}): Int
+  allVerificationRequests(
+    where: verificationRequestWhereInput! = {}
+    search: String
+    sortBy: [SortVerificationRequestsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [verificationRequestOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [verificationRequest!]
+  verificationRequest(
+    where: verificationRequestWhereUniqueInput!
+  ): verificationRequest
+  _allVerificationRequestsMeta(
+    where: verificationRequestWhereInput! = {}
+    search: String
+    sortBy: [SortVerificationRequestsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [verificationRequestOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use verificationRequestsCount instead."
+    )
+  verificationRequestsCount(where: verificationRequestWhereInput! = {}): Int
+  allBookingRefs(
+    where: BookingRefWhereInput! = {}
+    search: String
+    sortBy: [SortBookingRefsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [BookingRefOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [BookingRef!]
+  BookingRef(where: BookingRefWhereUniqueInput!): BookingRef
+  _allBookingRefsMeta(
+    where: BookingRefWhereInput! = {}
+    search: String
+    sortBy: [SortBookingRefsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [BookingRefOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use bookingRefsCount instead."
+    )
+  bookingRefsCount(where: BookingRefWhereInput! = {}): Int
+  allAttendees(
+    where: AttendeeWhereInput! = {}
+    search: String
+    sortBy: [SortAttendeesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AttendeeOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Attendee!]
+  Attendee(where: AttendeeWhereUniqueInput!): Attendee
+  _allAttendeesMeta(
+    where: AttendeeWhereInput! = {}
+    search: String
+    sortBy: [SortAttendeesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AttendeeOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use attendeesCount instead."
+    )
+  attendeesCount(where: AttendeeWhereInput! = {}): Int
+  allBookings(
+    where: BookingWhereInput! = {}
+    search: String
+    sortBy: [SortBookingsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [BookingOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Booking!]
+  Booking(where: BookingWhereUniqueInput!): Booking
+  _allBookingsMeta(
+    where: BookingWhereInput! = {}
+    search: String
+    sortBy: [SortBookingsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [BookingOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use bookingsCount instead."
+    )
+  bookingsCount(where: BookingWhereInput! = {}): Int
+  allAvailabilities(
+    where: AvailabilityWhereInput! = {}
+    search: String
+    sortBy: [SortAvailabilitiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AvailabilityOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Availability!]
+  Availability(where: AvailabilityWhereUniqueInput!): Availability
+  _allAvailabilitiesMeta(
+    where: AvailabilityWhereInput! = {}
+    search: String
+    sortBy: [SortAvailabilitiesBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AvailabilityOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use availabilitiesCount instead."
+    )
+  availabilitiesCount(where: AvailabilityWhereInput! = {}): Int
+  allSelectedCalenders(
+    where: SelectedCalenderWhereInput! = {}
+    search: String
+    sortBy: [SortSelectedCalendersBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SelectedCalenderOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [SelectedCalender!]
+  SelectedCalender(where: SelectedCalenderWhereUniqueInput!): SelectedCalender
+  _allSelectedCalendersMeta(
+    where: SelectedCalenderWhereInput! = {}
+    search: String
+    sortBy: [SortSelectedCalendersBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SelectedCalenderOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use selectedCalendersCount instead."
+    )
+  selectedCalendersCount(where: SelectedCalenderWhereInput! = {}): Int
+  allResetPasswordRequests(
+    where: ResetPasswordRequestWhereInput! = {}
+    search: String
+    sortBy: [SortResetPasswordRequestsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ResetPasswordRequestOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [ResetPasswordRequest!]
+  ResetPasswordRequest(
+    where: ResetPasswordRequestWhereUniqueInput!
+  ): ResetPasswordRequest
+  _allResetPasswordRequestsMeta(
+    where: ResetPasswordRequestWhereInput! = {}
+    search: String
+    sortBy: [SortResetPasswordRequestsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [ResetPasswordRequestOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use resetPasswordRequestsCount instead."
+    )
+  resetPasswordRequestsCount(where: ResetPasswordRequestWhereInput! = {}): Int
+  allRemainderMails(
+    where: RemainderMailWhereInput! = {}
+    search: String
+    sortBy: [SortRemainderMailsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [RemainderMailOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [RemainderMail!]
+  RemainderMail(where: RemainderMailWhereUniqueInput!): RemainderMail
+  _allRemainderMailsMeta(
+    where: RemainderMailWhereInput! = {}
+    search: String
+    sortBy: [SortRemainderMailsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [RemainderMailOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use remainderMailsCount instead."
+    )
+  remainderMailsCount(where: RemainderMailWhereInput! = {}): Int
+  allEventTypeCustomInputs(
+    where: EventTypeCustomInputWhereInput! = {}
+    search: String
+    sortBy: [SortEventTypeCustomInputsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [EventTypeCustomInputOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [EventTypeCustomInput!]
+  EventTypeCustomInput(
+    where: EventTypeCustomInputWhereUniqueInput!
+  ): EventTypeCustomInput
+  _allEventTypeCustomInputsMeta(
+    where: EventTypeCustomInputWhereInput! = {}
+    search: String
+    sortBy: [SortEventTypeCustomInputsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [EventTypeCustomInputOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use eventTypeCustomInputsCount instead."
+    )
+  eventTypeCustomInputsCount(where: EventTypeCustomInputWhereInput! = {}): Int
+  authenticatedItem: AuthenticatedItem
+  keystone: KeystoneMeta!
+}
+
+type KeystoneMeta {
+  adminMeta: KeystoneAdminMeta!
+}
+
+type KeystoneAdminMeta {
+  enableSignout: Boolean!
+  enableSessionItem: Boolean!
+  lists: [KeystoneAdminUIListMeta!]!
+  list(key: String!): KeystoneAdminUIListMeta
+}
+
+type KeystoneAdminUIListMeta {
+  key: String!
+  itemQueryName: String!
+  listQueryName: String!
+  hideCreate: Boolean!
+  hideDelete: Boolean!
+  path: String!
+  label: String!
+  singular: String!
+  plural: String!
+  description: String
+  initialColumns: [String!]!
+  pageSize: Int!
+  labelField: String!
+  fields: [KeystoneAdminUIFieldMeta!]!
+  initialSort: KeystoneAdminUISort
+  isHidden: Boolean!
+}
+
+type KeystoneAdminUIFieldMeta {
+  path: String!
+  label: String!
+  isOrderable: Boolean!
+  fieldMeta: JSON
+  viewsIndex: Int!
+  customViewsIndex: Int
+  createView: KeystoneAdminUIFieldMetaCreateView!
+  listView: KeystoneAdminUIFieldMetaListView!
+  itemView(id: ID!): KeystoneAdminUIFieldMetaItemView
+  search: QueryMode
+}
+
+type KeystoneAdminUIFieldMetaCreateView {
+  fieldMode: KeystoneAdminUIFieldMetaCreateViewFieldMode!
+}
+
+enum KeystoneAdminUIFieldMetaCreateViewFieldMode {
+  edit
+  hidden
+}
+
+type KeystoneAdminUIFieldMetaListView {
+  fieldMode: KeystoneAdminUIFieldMetaListViewFieldMode!
+}
+
+enum KeystoneAdminUIFieldMetaListViewFieldMode {
+  read
+  hidden
+}
+
+type KeystoneAdminUIFieldMetaItemView {
+  fieldMode: KeystoneAdminUIFieldMetaItemViewFieldMode!
+}
+
+enum KeystoneAdminUIFieldMetaItemViewFieldMode {
+  edit
+  read
+  hidden
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+type KeystoneAdminUISort {
+  field: String!
+  direction: KeystoneAdminUISortDirection!
+}
+
+enum KeystoneAdminUISortDirection {
+  ASC
+  DESC
+}

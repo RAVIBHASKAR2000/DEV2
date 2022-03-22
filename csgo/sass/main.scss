@@ -1,0 +1,43 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/functions";
+@import "base/base";
+@import "base/anime";
+@import "base/typo";
+@import "base/utils";
+@import "pages/home";
+@import "layout/header";
+@import "layout/grid";
+@import "layout/footer";
+@import "components/button";
+@import "components/composition";
+@import "components/form";
+/*.h2-box{
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%,-50%);       
+    text-align: center;  
+}
+
+.h2-main{
+    color: $color-pri;
+    text-transform: uppercase;     
+    margin-bottom: 60px;
+    text-align: left;
+    display: block;       
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 8px;
+
+}
+
+.h2-main:hover{
+    
+    transform: scale(1.1);
+    text-shadow: 0 10px 20px $black;
+}
+
+.first-info{
+    text-align: left;
+}*/

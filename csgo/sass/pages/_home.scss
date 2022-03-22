@@ -1,0 +1,26 @@
+.section-about {
+    background-color: $gray-light;
+    padding: 20rem 0;
+    margin-top: -20vh;
+}
+
+.sec-book{
+    padding: 15rem 0;
+    background-image: linear-gradient(to right bottom,hsla(0, 11%, 60%, 0.788),
+    hsla(158, 13%, 13%, 0.795));
+}
+.book{
+    background-image: linear-gradient(105deg,hsla(0, 12%, 72%, 0.486),
+    transparent),
+    url(../img/csgo/112382.jpg);
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.945);
+    height:50rem;
+    z-index:20;
+
+    &-form{
+        width: 50%;
+        padding: 6rem;
+    }
+}

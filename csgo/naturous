@@ -1,0 +1,24 @@
+BOX-sizing : The CSS box-sizing property allows us to include the padding and border in an element's total width and height.
+
+*{                  /*this is done for universality of the webpage in different browsers*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;      /*The CSS box-sizing property allows us to include the padding and border in an element's total width and height.*/
+}
+
+this is the basic reset using css!!!!!
+
+
+
+PROJECT WIDE FONT DEFINITIONS--
+		body {
+    font-family: "Lato" ,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777777
+}
+
+
+
+
